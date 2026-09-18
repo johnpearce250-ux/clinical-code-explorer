@@ -2,7 +2,7 @@
 
 A fast, responsive diagnostic code explorer and verification tool built with React. It interfaces directly with the National Institutes of Health / National Library of Medicine (NLM) Clinical Tables API to deliver real-time ICD-10-CM code lookups, chapter classifications, and billability status indicators for medical coders, billers, and health informatics teams.
 
-🔗 **Live Demo:** [https://clinical-code-explorer.vercel.app](https://clinical-code-explorer.vercel.app) *(Replace with your live URL)*
+🔗 **Live Demo:** [https://clinical-code-explorer.vercel.app](https://clinical-code-explorer.vercel.app) *
 
 ---
 
