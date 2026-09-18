@@ -1,0 +1,300 @@
+/* Global dark theme */
+:root {
+  --bg: #050816;
+  --bg-elevated: #0b1020;
+  --accent: #6366f1; /* indigo */
+  --accent-soft: #4c1d95; /* deep purple */
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+  --danger: #f97373;
+  --border-subtle: #1f2933;
+  --radius-lg: 12px;
+  --radius-md: 8px;
+  --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.55);
+}
+
+/* Apply a clean, modern font + dark background */
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #111827 0, #030712 45%, #020617 100%);
+  color: var(--text-main);
+}
+
+/* Main app container */
+.app {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;   /* center horizontally */
+  align-items: flex-start;   /* or center if you like */
+  padding: 32px 16px;
+  box-sizing: border-box;
+}
+
+/* Card around content (optional if you later wrap things) */
+.app-card {
+  width: 100%;
+  max-width: 700px;          /* control width here */
+  margin: 0 auto;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(17, 24, 39, 0.98));
+  border-radius: 20px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: var(--shadow-soft);
+  padding: 28px 24px 32px;
+}
+
+/* Headings */
+.app h1 {
+  font-size: 2rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0 0 6px;
+  background: linear-gradient(to right, #a855f7, #38bdf8);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.app p {
+  margin: 0 0 24px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* Form layout (you can add className="search-form" in IcdSearchForm) */
+.search-form {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+/* Inputs & button (match exact selectors you use) */
+.search-form input[type="text"],
+.search-form input[type="search"] {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-elevated);
+  color: var(--text-main);
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.search-form input[type="text"]:focus,
+.search-form input[type="search"]:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.search-form button {
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  border: none;
+  background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+  color: white;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+}
+
+.search-form button:hover {
+  filter: brightness(1.05);
+  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.45);
+  transform: translateY(-1px);
+}
+
+.search-form button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Results list */
+.icd-results-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;      /* fill the card */
+  max-width: none;  /* remove extra max-width constraint */
+}
+
+.icd-result-item {
+  padding: 10px 12px;      /* was 14px 16px */
+  margin-bottom: 6px;      /* slightly tighter stack */
+  border-radius: 10px;     /* a bit less pill-shaped */
+  background: radial-gradient(circle at top left, #1e293b, #020617);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.icd-result-item strong {
+  display: block;
+  /* font-family etc. the same */
+  margin-bottom: 2px;      /* was 4px */
+}
+
+.icd-result-item span {
+  font-size: 0.95rem;
+  color: var(--text-main);
+}
+
+/* Async state messages */
+.icd-message {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.icd-message.error {
+  color: var(--danger);
+}
+
+.search-form {
+  display: flex;
+  flex-direction: column; /* label + input + button stacked */
+  gap: 10px;              /* space between label+input and button */
+  margin-bottom: 20px;
+}
+
+.search-label {
+  display: flex;
+  flex-direction: column; /* text above input */
+  gap: 6px;               /* space between label text and input */
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.search-input {
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-elevated);
+  color: var(--text-main);
+  font-size: 0.95rem;
+  outline: none;
+  text-align: center; /* center the text inside the input */
+}
+
+.search-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.search-button {
+  /* you can reuse your existing button styles here if you like */
+}
+
+/* Card Header & Badge Grouping */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.code-badge-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.code-pill {
+  font-family: monospace;
+  font-weight: 700;
+  font-size: 1rem;
+  background-color: #f1f5f9;
+  color: #0f172a;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  border: 1px solid #cbd5e1;
+}
+
+/* Copy Button Styling */
+.copy-btn {
+  background: transparent;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+.copy-btn:hover {
+  background-color: #f8fafc;
+  color: #0f172a;
+  border-color: #94a3b8;
+}
+
+/* Copied Active State */
+.copy-btn.copied {
+  background-color: #dcfce7;
+  color: #166534;
+  border-color: #86efac;
+}
+
+/* Status Pill (Billable vs Non-Billable) */
+.status-pill {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+}
+
+.status-pill.billable {
+  background-color: #e0f2fe;
+  color: #0369a1;
+}
+
+.status-pill.non-billable {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+/* Base style for every skeleton placeholder */
+.skeleton {
+  display: inline-block;
+  background-color: #e2e8f0; /* Clear slate gray base */
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+/* The animated shimmer gradient overlay */
+.skeleton::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer 1.4s infinite;
+}
+
+/* The wave animation keyframe */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Skeleton Card Shell */
+.result-card.skeleton-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  opacity: 0.85;
+}
