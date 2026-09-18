@@ -48,3 +48,51 @@ clinical-code-explorer/
 │   └── main.jsx                   # Entry point
 ├── package.json
 └── README.md
+
+🚀 Getting Started
+Prerequisites
+Node.js (version 18 or higher recommended)
+
+npm or yarn
+
+Installation
+Clone the repository:
+
+Bash
+git clone [https://github.com/](https://github.com/)<your-username>/clinical-code-explorer.git
+cd clinical-code-explorer
+Install project dependencies:
+
+Bash
+npm install
+Launch the development server:
+
+Bash
+npm run dev
+Open your browser and navigate to http://localhost:5173.
+
+Production Build
+To test the production build locally:
+
+Bash
+npm run build
+npm run preview
+📜 API Reference & Data Transformation
+This application queries the public, unauthenticated NLM Clinical Tables endpoint:
+
+Plaintext
+GET [https://clinicaltables.nlm.nih.gov/api/icd10cm/v3/search?sf=code,name&terms=](https://clinicaltables.nlm.nih.gov/api/icd10cm/v3/search?sf=code,name&terms=){QUERY}&maxList=25
+The raw array response (data[3]) is transformed on the client into structured diagnostic objects:
+
+JavaScript
+{
+  code: "S82.101A",
+  description: "Fracture of unspecified upper end of right tibia, initial encounter for closed fracture",
+  category: "Injury & Poisoning",
+  billable: true
+}
+📄 License
+This project is open source and available under the MIT License.
+
+
+---
