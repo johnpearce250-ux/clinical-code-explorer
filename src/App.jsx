@@ -30,25 +30,26 @@ function App() {
       setError(null);
 
       try {
-        const url = `https://clinicaltables.nlm.nih.gov/api/icd10cm/v3/search?sf=code,name&terms=${encodeURIComponent(
-          debouncedSearchText
-        )}&maxList=25`;
+        const url = `http://127.0.0.1:5000/codes/search?query=${encodeURIComponent(
+  debouncedSearchText
+)}`;
 
-        const response = await fetch(url, { signal: controller.signal });
+const response = await fetch(url, { signal: controller.signal });
 
-        if (!response.ok) {
-          throw new Error(`HTTP error: ${response.status}`);
-        }
+if (!response.ok) {
+  const errBody = await response.json().catch(() => ({}));
+  throw new Error(errBody.error || `HTTP error: ${response.status}`);
+}
 
-        const data = await response.json();
-        const rows = data[3] || [];
+const data = await response.json();
+// data is already an array of { code, description, chapter }
 
-        const formattedResults = rows.map(([code, description]) => ({
-          code: code,
-          description: description,
-          category: getCategoryFromCode(code),
-          billable: code.length >= 4
-        }));
+const formattedResults = data.map((item) => ({
+  code: item.code,
+  description: item.description,
+  category: getCategoryFromCode(item.code),
+  billable: item.code.length >= 4
+}));
 
         setResults(formattedResults);
       } catch (err) {
